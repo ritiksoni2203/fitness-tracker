@@ -3,7 +3,8 @@ const workoutService = require('../services/workoutService');
 module.exports = {
   getAllWorkouts: async (req, res) => {
     try {
-      const workouts = await workoutService.getAllWorkouts();
+      const userId = req.userId;
+      const workouts = await workoutService.getAllWorkouts(userId);
       res.json(workouts);
     } catch (err) {
       console.log(err);
@@ -13,7 +14,8 @@ module.exports = {
 
   createWorkout: async (req, res) => {
     try {
-      const { userId, workoutType, duration, caloriesBurned, date } = req.body;
+      const { workoutType, duration, caloriesBurned, date } = req.body;
+      const userId = req.userId;
       const workout = await workoutService.createWorkout(userId, workoutType, duration, caloriesBurned, date);
       res.status(201).json(workout);
     } catch (err) {

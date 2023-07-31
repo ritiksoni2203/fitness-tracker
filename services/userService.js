@@ -20,8 +20,8 @@ module.exports = {
         return newUser;
     },
 
-    loginUser: async (username, password) => {
-        const user = await User.findOne({ username });
+    loginUser: async (email, password) => {
+        const user = await User.findOne({ email });
         if (!user) {
             throw new Error('Invalid credentials');
         }

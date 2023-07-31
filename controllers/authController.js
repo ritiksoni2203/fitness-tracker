@@ -16,9 +16,9 @@ module.exports = {
 
     loginUser: async (req, res) => {
         try {
-            const { username, password } = req.body;
+            const { email, password } = req.body;
 
-            const token = await userService.loginUser(username, password);
+            const token = await userService.loginUser(email, password);
 
             res.json({ token });
         } catch (error) {

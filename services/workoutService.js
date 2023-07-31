@@ -1,8 +1,8 @@
 const Workout = require('../models/workoutModel');
 
 module.exports = {
-  getAllWorkouts: async () => {
-    const workouts = await Workout.find();
+  getAllWorkouts: async (userId) => {
+    const workouts = await Workout.find({ userId });
     return workouts;
   },
 
@@ -13,10 +13,10 @@ module.exports = {
 
   updateWorkout: async (id, userId, workoutType, duration, caloriesBurned, date) => {
     const updatedWorkout = await Workout.findByIdAndUpdate(
-        id,
-        { userId, workoutType, duration, caloriesBurned, date },
-        { new: true }
-      );
+      id,
+      { userId, workoutType, duration, caloriesBurned, date },
+      { new: true }
+    );
     return updatedWorkout;
   },
 

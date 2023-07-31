@@ -3,7 +3,8 @@ const goalService = require('../services/goalService');
 module.exports = {
   createGoal: async (req, res) => {
     try {
-      const { userId, workoutType, targetHoursPerWeek, targetCaloriesPerWeek } = req.body;
+      const { workoutType, targetHoursPerWeek, targetCaloriesPerWeek } = req.body;
+      const userId = req.userId;
       const goal = await goalService.createGoal(userId, workoutType, targetHoursPerWeek, targetCaloriesPerWeek);
       res.status(201).json(goal);
     } catch (err) {
